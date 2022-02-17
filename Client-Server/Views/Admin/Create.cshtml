@@ -1,0 +1,115 @@
+﻿@model Client_Server.Models.entity.product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+
+
+}
+
+<style>
+    .cc{
+      display: inline-block;
+      background-color: indigo;
+      color: white;
+      padding: 0.5rem;
+      font-family: sans-serif;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .border-form {
+        border: solid 1px #7a7979cc;
+    }
+    .width-arena {
+        width: 123%;
+    }
+</style>
+
+<div class="content-wrapper">
+    @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "content-wrapper" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Ảnh của sản phẩm</h4>
+                        <p class="card-description">
+                            Hình ảnh hiển thị của sản phẩm
+                        </p>
+
+                        <img src="~/Access/img/add.png" alt="Alternate Text" class="img-fluid rounded-circle mb-1" id="output" />
+                        <div class="caption text-muted mb-4">JPG và PNG nặng không quá 5MB</div>
+                        <input type="file" class="btn btn-primary mdc-ripple-upgraded" id="uploadhinh" name="uploadhinh" accept="image" onchange="loadFile(event)" hidden />
+                        <label class="cc" for="uploadhinh">Tải ảnh lên <i class="typcn typcn-upload btn-icon-prepend"></i></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Thông tin của sản phẩm</h4>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>Tên sản phẩm</label>
+                                <div id="the-basics">
+                                    @Html.EditorFor(model => model.NameProduct, new { htmlAttributes = new { @class = "form-control border-form" } })
+                                    @Html.ValidationMessageFor(model => model.NameProduct, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label>Giá thành</label>
+                                <div id="bloodhound">
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control border-form" } })
+                                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Thương Hiệu</label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownList("idCate", null, htmlAttributes: new { @class = "form-control border-form" })
+                                        @Html.ValidationMessageFor(model => model.idCate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Danh mục</label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownList("idBrand", null, htmlAttributes: new { @class = "form-control border-form" })
+                                        @Html.ValidationMessageFor(model => model.idBrand, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Mô tả</label>
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.descriptions, new { @class = "form-control width-arena border-form" })
+                                @Html.ValidationMessageFor(model => model.descriptions, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button class="btn btn-light">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary btn-rounded btn-fw">Back to list</a>
+</div>
+
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>
