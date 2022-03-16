@@ -1,0 +1,117 @@
+﻿
+@model IEnumerable<Client_Server.Models.entity.bill>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Product.cshtml";
+}
+
+
+<style>
+    .filter__page-btn {
+        color: whitesmoke;
+        font-size: 15px;
+        margin-right: 2px;
+        padding: 5px;
+        background-color: #00c8bf;
+    }
+</style>
+
+<div class="col-sm-9">
+
+    <div class="table-responsive pr-3">
+        <table class="table table-striped project-orders-table table-hover ">
+            <thead>
+                <tr>
+                    <th>
+                        Ngày lập đơn
+                    </th>
+                    <th>
+                        địa chỉ nhận hàng
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Khuyến mại
+                    </th>
+                    <th>
+                        Tình trạng
+                    </th>
+                    <th>
+                        Hoạt động
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.billDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.addressCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.discout.percents)%
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.statusBill)
+                    </td>
+                    <td>
+                        <div class="filter__page-control">
+                            @if (item.statusBill == "Đã giao hàng")
+                            {
+                                <a href="@Url.Action("detailbill", "Customer", new { id = item.idBill})" style="background-color: #FE980F;color:white;" class="btn btn-fefault">
+                                    Detail
+                                    <i class="typcn typcn-edit btn-icon-append"></i>
+                                </a>
+                            }
+                            @if (item.statusBill == "Đã Hủy đơn Hàng")
+                            {
+                                <a href="@Url.Action("detailbill", "Customer", new { id = item.idBill})" style="background-color: #FE980F;color:white;" class="btn btn-fefault">
+                                    Detail
+                                    <i class="typcn typcn-edit btn-icon-append"></i>
+                                </a>
+                                <a href="@Url.Action("AgainBill", "Customer", new { id = item.idBill})" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                    Mua lại đơn hàng
+                                    <i class="typcn typcn-edit btn-icon-append"></i>
+                                </a>
+                            }
+                            @if (item.statusBill == "Đơn hàng mới chưa được xác nhận")
+                            {
+                                <a href="@Url.Action("detailbill", "Customer", new { id = item.idBill})" style="background-color: #FE980F;color:white;" class="btn btn-fefault">
+                                    Detail
+                                    <i class="typcn typcn-edit btn-icon-append"></i>
+                                </a>
+                            }
+                            @if (item.statusBill == "Đang giao hàng")
+                            {
+                                <a href="@Url.Action("detailbill", "Customer", new { id = item.idBill})" style="background-color: #FE980F;color:white;" class="btn btn-fefault">
+                                    Detail
+                                    <i class="typcn typcn-edit btn-icon-append"></i>
+                                </a>
+                                <a href="@Url.Action("AgainBill", "Customer", new { id = item.idBill})" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                    Đã nhận hàng
+                                    <i class="typcn typcn-edit btn-icon-append"></i>
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                }
+                
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
+

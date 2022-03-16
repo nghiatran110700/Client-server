@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,25 +49,18 @@ namespace Client_Server.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idProduct,NameProduct,Price,img,descriptions,idBrand,idCate,status")] product pro, HttpPostedFileBase uploadhinh)
+        public ActionResult Create([Bind(Include = "idProduct,NameProduct,Price,img,descriptions,idBrand,idCate,status")] product product)
         {
             if (ModelState.IsValid)
             {
-                if(uploadhinh != null && uploadhinh.ContentLength > 0)
-                {
-                    var path = Path.Combine(Server.MapPath("~/Access/img/"), System.IO.Path.GetFileName(uploadhinh.FileName));
-                    uploadhinh.SaveAs(path);
-                    pro.img = uploadhinh.FileName;
-                    db.SaveChanges();
-                }
-                db.products.Add(pro);
+                db.products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idBrand = new SelectList(db.brands, "id", "NameBrand", pro.idBrand);
-            ViewBag.idCate = new SelectList(db.categories, "idCategory", "NameCate", pro.idCate);
-            return View(pro);
+            ViewBag.idBrand = new SelectList(db.brands, "id", "NameBrand", product.idBrand);
+            ViewBag.idCate = new SelectList(db.categories, "idCategory", "NameCate", product.idCate);
+            return View(product);
         }
 
         // GET: products/Edit/5

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Client_Server.Models.entity.detailBill>
+
+
+@{
+    ViewBag.Title = "detailbill";
+    Layout = "~/Views/Shared/_Product.cshtml";
+}
+
+<style>
+    .filter__page-btn {
+        color: whitesmoke;
+        font-size: 15px;
+        margin-right: 2px;
+        padding: 5px;
+        background-color: #00c8bf;
+    }
+</style>
+
+<div class="col-sm-9">
+    <div class="table-responsive pr-3">
+        <table class="table table-striped project-orders-table table-hover ">
+            <thead>
+                <tr>
+                    <th>
+                        Tên khsản phẩm
+                    </th>
+                    <th>
+                        ảnh sản phẩm
+                    </th>
+                    <th>
+                        giá thành
+                    </th>
+                    <th>
+                        số lượng
+                    </th>
+                    <th>
+                        kích thước
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.NameProduct)
+                        </td>
+                        <td>
+                            <img width="100" height="100 " src="~/Access/img/@item.product.img" alt="image" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.size)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h4 style="margin:16px;">Số tiền của đơn hàng: @Session["tongbill"]</h4>
+        <div style="margin:16px;">
+
+            <a href="@Url.Action("History", "ShoppingCart")" style="border:solid 1px #ccc; padding:16px;">Quay lại trang chủ</a>
+
+            @if (Session["trangthai"].ToString() != "Đã giao hàng")
+            {
+                <a href="@Url.Action("deleteBill", "Customer", new { id = Session["Madonhang"]})" style="background-color: #fe9c19; color:white; padding: 17px;">Hủy đơn hàng</a>
+            }
+            <a href="@Url.Action("AgainBill", "Customer", new { id = Session["Madonhang"]})" style="background-color: #0b9e44; color: white; padding: 17px;">
+                Mua lại đơn hàng
+            </a>
+        </div>
+    </div>
+</div>
+

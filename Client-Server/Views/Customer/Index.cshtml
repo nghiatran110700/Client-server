@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<Client_Server.Models.DTO.ProductDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Customer.cshtml";
+}
+
+<div class="features_items">
+    <!--features_items-->
+    <h2 class="title text-center">Features Items</h2>
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="~/Access/img/@item.img" alt="" />
+                        <h2>@item.Price Đ</h2>
+                        <p>@item.NameProduct</p>
+                        <a href="@Url.Action("AddtoCart","ShoppingCart", new {id = item.idProduct, size = 38 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="overlay-content">
+                            <h2>$@item.Price Đ</h2>
+                            <p>@item.NameProduct</p>
+                            <a href="@Url.Action("AddtoCart","ShoppingCart", new {id = item.idProduct, size = 38 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </div>
+                    </div>
+                    <img src="~/Access/Client/images/home/new.png" class="new" alt="" />
+                </div>
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href="@Url.Action("DetailProduct","Customer", new { id = item.idProduct})"><i class="fa fa-plus-square"></i>Detail Product</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+
+</div><!--features_items-->

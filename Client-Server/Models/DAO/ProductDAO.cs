@@ -44,8 +44,27 @@ namespace Client_Server.Models.DAO
                             " b.NameBrand," +
                             " c.NameCate " +
                             " from product p join category c on p.idCate = c.idCategory join brand b on p.idBrand = b.id" +
-                            " Where p.NameProduct LIKE '%" + keyword +"%'"
+                            " Where p.NameProduct LIKE'%" + keyword +"%'"
                             );
+            return lst;
+        }
+
+        public ProductDTO FindMyID(int? id)
+        {
+            var lst = db.Database.SqlQuery<ProductDTO>("Select " +
+                            " idProduct," +
+                            " p.NameProduct," +
+                            " p.Price," +
+                            " p.img," +
+                            " p.descriptions," +
+                            " p.idCate," +
+                            " p.idBrand," +
+                            " p.status," +
+                            " b.NameBrand," +
+                            " c.NameCate " +
+                            " from product p join category c on p.idCate = c.idCategory join brand b on p.idBrand = b.id" +
+                            " Where p.idProduct ==" +id
+                            ).SingleOrDefault();
             return lst;
         }
     }

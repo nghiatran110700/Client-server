@@ -1,0 +1,51 @@
+﻿@model Client_Server.Models.entity.account
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idRole)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idAccount }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

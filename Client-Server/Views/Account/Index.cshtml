@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Client_Server.Models.entity.account>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .filter__page-btn {
+        color: whitesmoke;
+        font-size: 15px;
+        margin-right: 2px;
+        padding: 5px;
+        background-color: #00c8bf;
+    }
+</style>
+
+
+<p>
+    <a href="@Url.Action("Create", "Account")" class="btn btn-info btn-rounded btn-fw">Create new</a>
+</p>
+<div class="card">
+    <div class="table-responsive pr-3">
+        <table class="table table-striped project-orders-table table-hover ">
+            <thead>
+                <tr>
+                    <th>
+                        UserName
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        FullName
+                    </th>
+                    <th>
+                        Quyền
+                    </th>
+                    <th>
+                        Hoạt động
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.password)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameCustomer)
+                        </td>
+                        <td>
+                            @if (item.idRole == true)
+                            {
+                                @Html.DisplayName("Admin")
+                            }
+                            else
+                            {
+                                @Html.DisplayName("Customer")
+                            }
+
+                        </td>
+                        <td>
+                            <div class="filter__page-control">
+                                <a href="@Url.Action("Edit", "Account", new { id = item.idAccount})" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                    Edit
+                                    <i class="typcn typcn-edit btn-icon-append"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", "Account", new { id = item.idAccount})" class="btn btn-danger btn-sm btn-icon-text">
+                                    Delete
+                                    <i class="typcn typcn-delete-outline btn-icon-append"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+</div>

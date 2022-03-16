@@ -1,0 +1,51 @@
+﻿@model Client_Server.Models.entity.discout
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>discout</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameDiscout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameDiscout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDay)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idDiscount }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

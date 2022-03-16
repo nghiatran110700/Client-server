@@ -38,9 +38,9 @@ namespace Client_Server.Models.entity
                 .WithOptional(e => e.category)
                 .HasForeignKey(e => e.idCate);
 
-            modelBuilder.Entity<detailBill>()
-                .Property(e => e.size)
-                .IsFixedLength();
+            //modelBuilder.Entity<detailBill>()
+            //    .Property(e => e.size)
+            //    .IsFixedLength();
         }
     }
 }

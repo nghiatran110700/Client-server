@@ -76,8 +76,12 @@ E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\System.Web.WebPages.Raz
 E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\Newtonsoft.Json.xml
 E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\Antlr3.Runtime.pdb
 E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Visual Studio 2019 Document\ASP.net\Client-Server\obj\Debug\Client-Server.csproj.AssemblyReference.cache
 E:\Visual Studio 2019 Document\ASP.net\Client-Server\obj\Debug\Client-Server.csproj.CoreCompileInputs.cache
 E:\Visual Studio 2019 Document\ASP.net\Client-Server\obj\Debug\Client-Server.csproj.CopyComplete
 E:\Visual Studio 2019 Document\ASP.net\Client-Server\obj\Debug\Client-Server.dll
 E:\Visual Studio 2019 Document\ASP.net\Client-Server\obj\Debug\Client-Server.pdb
+E:\Visual Studio 2019 Document\ASP.net\Client-Server\obj\Debug\Client-Server.csproj.AssemblyReference.cache
+E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\PagedList.dll
+E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\PagedList.Mvc.dll
+E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\PagedList.xml
+E:\Visual Studio 2019 Document\ASP.net\Client-Server\bin\PagedList.Mvc.xml

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Client_Server.Models.entity.detailBill>
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .filter__page-btn {
+        color: whitesmoke;
+        font-size: 15px;
+        margin-right: 2px;
+        padding: 5px;
+        background-color: #00c8bf;
+    }
+</style>
+
+<div class="card">
+    <div class="table-responsive pr-3">
+        <table class="table table-striped project-orders-table table-hover ">
+            <thead>
+                <tr>
+                    <th>
+                        Tên khsản phẩm
+                    </th>
+                    <th>
+                        ảnh sản phẩm
+                    </th>
+                    <th>
+                        giá thành
+                    </th>
+                    <th>
+                        số lượng
+                    </th>
+                    <th>
+                        kích thước
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.NameProduct)
+                        </td>
+                        <td>
+                            <img src="~/Access/img/@item.product.img" alt="image" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.size)
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+            <h4 style="margin:16px;">Số tiền của đơn hàng: @Session["tongbill"] Đ</h4>
+        <div style="margin:16px;">
+            <a href="@Url.Action("Index", "Bill")" class="btn btn-outline-secondary">Quay lại trang chủ</a>
+            @if(Session["trangthai"].ToString() != "Đã giao hàng" && Session["trangthai"].ToString() != "Đang giao hàng")
+            {
+                <a href="@Url.Action("Edit", "Bill", new {id =Session["idbill"] })" class="btn btn-secondary">Xác nhận đơn hàng</a>
+            }
+
+        </div>
+    </div>
+</div>

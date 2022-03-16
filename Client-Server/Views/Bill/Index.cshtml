@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Client_Server.Models.entity.bill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .filter__page-btn {
+        color: whitesmoke;
+        font-size: 15px;
+        margin-right: 2px;
+        padding: 5px;
+        background-color: #00c8bf;
+    }
+</style>
+
+<div class="card">
+    <div class="table-responsive pr-3">
+        <table class="table table-striped project-orders-table table-hover ">
+            <thead>
+                <tr>
+                    <th>
+                        Ngày lập đơn
+                    </th>
+                    <th>
+                        Tên khách hàng
+                    </th>
+                    <th>
+                        địa chỉ nhận hàng
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        giảm giá
+                    </th>
+
+                    <th>
+                        Tình trạng
+                    </th>
+                    <th>
+                        Hoạt động
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.billDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.account.NameCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.addressCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.discout.percents)%
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.statusBill)
+                    </td>
+                    <td>
+                        <div class="filter__page-control">
+                            <a href="@Url.Action("Detail", "Bill", new { id = item.idBill})" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                Detail
+                                <i class="typcn typcn-edit btn-icon-append"></i>
+                            </a>
+
+                        </div>
+                    </td>
+                </tr>
+                }
+                <tr>
+                    <td>
+                        <h4> tổng doanh thu :@Session["Tongtien"] Đ</h4>
+                    </td>
+                </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>

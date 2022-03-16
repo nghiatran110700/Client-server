@@ -1,0 +1,81 @@
+﻿@model Client_Server.Models.entity.account
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .cc {
+        display: inline-block;
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    .border-form {
+        border: solid 1px #7a7979cc;
+    }
+
+    .width-arena {
+        width: 123%;
+    }
+</style>
+<div class="content-wrapper">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idAccount)
+
+        <div class="col-md-10 grid-margin stretch-card">
+            <div class="card" style="width:600px;">
+                <div class="card-body">
+                    <h4 class="card-title">Điền thông tin danh mục của sản phẩm</h4>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label>UserName</label>
+                            <div id="the-basics">
+                                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control border-form" } })
+                                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Password</label>
+                            <div id="the-basics">
+                                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control border-form" } })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Tên người dùng</label>
+                            <div id="the-basics">
+                                @Html.EditorFor(model => model.NameCustomer, new { htmlAttributes = new { @class = "form-control border-form" } })
+                                @Html.ValidationMessageFor(model => model.NameCustomer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Kiểu tài khoản</label>
+                            <div id="the-basics">
+                                <select class="btn btn-sm btn-outline-primary dropdown-toggle" id="idRole" name="idRole">
+                                    <option selected="selected" value="@Model.idRole">@Model.idRole</option>
+                                    <option value="true">Admin</option>
+                                    <option value="false">Customer</option>
+                                </select>
+                                @*@Html.EditorFor(model => model.idRole)*@
+                                @Html.ValidationMessageFor(model => model.idRole, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                </div>
+            </div>
+        </div>
+    }
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary btn-rounded btn-fw">Back to list</a>
+</div>

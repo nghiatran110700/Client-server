@@ -16,9 +16,8 @@ namespace Client_Server.Models.entity
         public int? idProduct { get; set; }
 
         public int? amount { get; set; }
-
-        [StringLength(10)]
-        public string size { get; set; }
+        
+        public int size { get; set; }
 
         public virtual bill bill { get; set; }
 
